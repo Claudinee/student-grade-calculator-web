@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Results</h1>
-    <p>Scores: {{ scores }}</p>
-    <p>Average: {{ average }}</p>
-    <p>Grade: <strong>{{ grade }}</strong></p>
-    <a href="/">Calculate Again</a>
+    <div class="container">
+        <h1>Results</h1>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td data-label="Scores">Scores</td>
+                <td data-label="Value">{{ scores }}</td>
+            </tr>
+            <tr>
+                <td data-label="Average">Average</td>
+                <td data-label="Value">{{ average }}</td>
+            </tr>
+            <tr>
+                <td data-label="Grade">Grade</td>
+                <td data-label="Value"><strong>{{ grade }}</strong></td>
+            </tr>
+        </table>
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="/" style="color: #4CAF50; text-decoration: none; font-weight: bold;">&#8592; Calculate Again</a>
+        </p>
+    </div>
 </body>
 </html>
