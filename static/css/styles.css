@@ -11,11 +11,12 @@ body {
 h1, h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 0.5em;
 }
 
 .container {
     max-width: 900px;
-    margin: auto;
+    margin: 2em auto;
     padding: 20px;
 }
 
@@ -24,7 +25,7 @@ form {
     background-color: #fff;
     padding: 20px;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 0 auto 2em auto;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -33,9 +34,10 @@ input[type="text"],
 input[type="number"] {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 0 15px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 /* Button Styling */
@@ -43,13 +45,14 @@ button,
 input[type="submit"] {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     display: block;
     margin: 20px auto 0 auto;
     font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover,
@@ -63,16 +66,20 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 th, td {
     text-align: left;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
     background-color: #f0f0f0;
+    font-weight: 600;
 }
 
 /* Responsive layout */
@@ -83,7 +90,7 @@ th {
 
     form {
         width: 100%;
-        margin: 0;
+        margin: 0 auto 2em auto;
         padding: 15px;
     }
 
@@ -91,27 +98,35 @@ th {
         display: block;
     }
 
+    thead tr {
+        display: none;
+    }
+
     tr {
-        margin-bottom: 15px;
+        margin-bottom: 1em;
+        background: #fff;
+        border-radius: 6px;
+        padding: 15px;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
     }
 
     td {
         text-align: right;
         position: relative;
         padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #eee;
     }
 
     td::before {
         content: attr(data-label);
         position: absolute;
-        left: 10px;
-        top: 10px;
+        left: 15px;
+        top: 15px;
         font-weight: bold;
-        text-align: left;
-    }
-
-    th {
-        display: none;
+        color: #555;
+        text-transform: uppercase;
+        font-size: 0.85em;
     }
 
     button {

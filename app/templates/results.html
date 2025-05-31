@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Results</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta charset="UTF-8" />
+    <title>Student Grade Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
 </head>
 <body>
     <div class="container">
-        <h1>Results</h1>
+        <h1>Grade Results for {{ student_name }}</h1>
+        <h2>Course: {{ course }}</h2>
+
         <table>
-            <tr>
-                <th>Field</th>
-                <th>Value</th>
-            </tr>
-            <tr>
-                <td data-label="Scores">Scores</td>
-                <td data-label="Value">{{ scores }}</td>
-            </tr>
-            <tr>
-                <td data-label="Average">Average</td>
-                <td data-label="Value">{{ average }}</td>
-            </tr>
-            <tr>
-                <td data-label="Grade">Grade</td>
-                <td data-label="Value"><strong>{{ grade }}</strong></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Assessment</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in scores.items() %}
+                <tr>
+                    <td data-label="Assessment">{{ key }}</td>
+                    <td data-label="Score">{{ value }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th data-label="Assessment">Average</th>
+                    <td data-label="Score">{{ average | round(2) }}</td>
+                </tr>
+                <tr>
+                    <th data-label="Assessment">Grade</th>
+                    <td data-label="Score">{{ grade }}</td>
+                </tr>
+            </tbody>
         </table>
-        <p style="text-align: center; margin-top: 20px;">
-            <a href="/" style="color: #4CAF50; text-decoration: none; font-weight: bold;">&#8592; Calculate Again</a>
-        </p>
+
+        <br />
+        <a href="{{ url_for('main.index') }}">Calculate Another</a>
     </div>
+    <form method="POST" action="/download-pdf" class="download-form">
+            <input type="hidden" name="student_name" value="{{ student_name }}">
+            <input type="hidden" name="course" value="{{ course }}">
+            <input type="hidden" name="total_score" value="{{ average }}">
+            <input type="hidden" name="grade" value="{{ grade }}">
+            <button type="submit">Download Grade Report (PDF)</button>
+        </form>
 </body>
 </html>
